@@ -1,0 +1,46 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Frontend
+node_modules
+dist
+dist-ssr
+*.local
+
+# Python backend
+backend/venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Trained mood prototypes (user-specific, contains MERT embeddings — large + personal).
+# To share, commit explicitly with: git add -f backend/prototypes.json
+backend/prototypes.json
+
+# Local secrets / env
+.env
+.env.*
+!.env.example
+
+# HF cache override (only if someone sets HF_HOME inside the repo)
+.cache/
+
+# OS / editors
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
