@@ -44,3 +44,6 @@ backend/prototypes.json
 *.njsproj
 *.sln
 *.sw?
+
+# LLM
+.claude

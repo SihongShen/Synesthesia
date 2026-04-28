@@ -1,5 +1,6 @@
 import json
 import math
+import os
 import tempfile
 from pathlib import Path
 
@@ -210,9 +211,13 @@ def analyze():
         return jsonify({"error": "missing file field"}), 400
     audio = request.files["file"]
 
-    with tempfile.NamedTemporaryFile(suffix=".audio", delete=True) as tmp:
+    tmp = tempfile.NamedTemporaryFile(suffix=".audio", delete=False)
+    tmp.close()
+    try:
         audio.save(tmp.name)
         y, sr = librosa.load(tmp.name, sr=None, mono=True)
+    finally:
+        os.unlink(tmp.name)
 
     if y.size == 0:
         return jsonify({"error": "empty audio"}), 400
@@ -238,9 +243,13 @@ def register_prototype():
         return jsonify({"error": f"mood must be one of {SUPPORTED_MOODS}"}), 400
 
     audio = request.files["file"]
-    with tempfile.NamedTemporaryFile(suffix=".audio", delete=True) as tmp:
+    tmp = tempfile.NamedTemporaryFile(suffix=".audio", delete=False)
+    tmp.close()
+    try:
         audio.save(tmp.name)
         y, sr = librosa.load(tmp.name, sr=MERT_SR, mono=True)
+    finally:
+        os.unlink(tmp.name)
 
     if y.size < MERT_SR:
         return jsonify({"error": "prototype audio must be at least 1 s"}), 400
