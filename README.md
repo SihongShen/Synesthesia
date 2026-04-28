@@ -1,4 +1,4 @@
-# Music Vis — Audio-Driven Real-Time 3D Visualization
+# Synesthesia — Audio-Driven Real-Time 3D Visualization
 
 A web app that turns an uploaded audio file into a real-time 3D scene in the browser. The backend runs offline analysis with Flask + librosa + MERT (mood classification is a cosine-similarity lookup against user-uploaded prototype clips). The frontend uses Tone.js for live FFT and Three.js (`@react-three/fiber`) for rendering — the whole atmosphere reacts to the music's energy, spectrum, and mood.
 
